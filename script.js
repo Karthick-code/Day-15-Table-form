@@ -1,3 +1,4 @@
+
 function create_label(tagname,attriname,attrival,content){
     var label1=document.createElement(tagname);
     label1.setAttribute(attriname,attrival)
@@ -13,24 +14,18 @@ function create_input(tagname,attriname1,attrival1,attiname2,attrival2){
     //input1.setAttribute("style","display:block");
     return input1;
 }
-function create_input_type(tagname,attriname1,attrival1,attiname2,attrival2,content){
-    var input1=document.createElement(tagname);    
-    input1.setAttribute(attriname1,attrival1);
-    input1.setAttribute(attiname2,attrival2);
-    input1.innerHTML=content;
-    return input1;
-}
+
 function create_checkbox(){
     var north_input=create_input("input","type","checkbox","id","NorthIndian");
-    var northlabel=create_label("label","for","NorthIndian","North Indian");northlabel.setAttribute("style","display:inline-block");
+    var northlabel=create_label("label","for","NorthIndian","North Indian");northlabel.setAttribute("style","display:inline");
     var south_input=create_input("input","type","checkbox","id","SouthIndian");
-    var southlabel=create_label("label","for","SouthIndian","South Indian");southlabel.setAttribute("style","display:inline-block");
+    var southlabel=create_label("label","for","SouthIndian","South Indian");southlabel.setAttribute("style","display:inline");
     var chinese_input=create_input("input","type","checkbox","id","Chinese");
-    var chineselabel=create_label("label","for","Chinese","Chinese");chineselabel.setAttribute("style","display:inline-block");
+    var chineselabel=create_label("label","for","Chinese","Chinese");chineselabel.setAttribute("style","display:inline");
     var japanese_input=create_input("input","type","checkbox","id","japanese");
-    var japaneselabel=create_label("label","for","japanese","Japanese");japaneselabel.setAttribute("style","display:inline-block");
+    var japaneselabel=create_label("label","for","japanese","Japanese");japaneselabel.setAttribute("style","display:inline");
     var seafood_input=create_input("input","type","checkbox","id","Seafood");//seafood_input.setAttribute("style","display:inline-block");
-    var seafoodlabel=create_label("label","for","Seafood","Seafood");seafoodlabel.setAttribute("style","display:inline-block");
+    var seafoodlabel=create_label("label","for","Seafood","Seafood");seafoodlabel.setAttribute("style","display:inline");
     form1.append(north_input,northlabel,south_input,southlabel,chinese_input,chineselabel,
         japanese_input,japaneselabel,seafood_input,seafoodlabel);
 }
@@ -40,6 +35,7 @@ cont.className="container";
 var r_ow=document.createElement("div");
 r_ow.className="row";
 
+//left side for form
 var col_1=document.createElement("div");
 col_1.className="col-4";
 
@@ -54,10 +50,10 @@ var lastlabel=create_label("label","for","LastName","LastName:");
 var lastinput=create_input("input","type","text","id","LastName");
 
 var add1label=create_label("label","for","AddresLine1","Addres Line 1:");
-var add1input=create_input("input","type","text","id","Addres Line 1");
+var add1input=create_input("input","type","text","id","AddresLine1");
 
 var add2label=create_label("label","for","AddresLine2","Addres Line 2:");
-var add2input=create_input("input","type","text","id","Addres Line 2");
+var add2input=create_input("input","type","text","id","AddresLine2");
 
 var pinlabel=create_label("label","for","PIN","PIN:");
 var pininput=create_input("input","type","text","id","PIN");
@@ -87,16 +83,18 @@ form1.append(head,firstlabel,firstinput,lastlabel,lastinput,add1label,add1input,
 create_checkbox();
 form1.append(statelabel,stateinput,countrylabel,countryinput);
 var but=document.createElement("button");
-but.setAttribute("for","button");
+but.setAttribute("type","button");
 but.id="but1";
 but.innerHTML="Submit";
 but.setAttribute("style","display:block");
-//but.addEventListener("click","");// function to be added
+but.addEventListener("click",data_2_table());// function to be added
 
 form1.append(but);
 
 col_1.append(form1);
 
+
+//right side for table
 var col_2=document.createElement("div");
 col_2.className="col-8";// column 2 for table
 
@@ -166,7 +164,31 @@ function create_td(tagname,content){
     td_ele.innerHTML = content;
     return td_ele; 
 }
-
+function data_2_table(){
+    //var tbody_tr=create_tr();
+    var firstname=document.getElementById("FirstName");
+    console.log(firstname);
+    // var lastname=document.getElementById("LastName");
+    // var add1=document.getElementById("AddresLine1");
+    // var add2=document.getElementById("AddresLine2");
+    // var pin=document.getElementById("PIN");
+    // //var gender=document.getElementById("Gender").value;
+    // //var choice=document.getElementById("Choice of Food").value;
+    // var state=document.getElementById("State");
+    // var country=document.getElementById("Country");
+    
+    // var td1 = create_th("th","scope","row",firstname);
+    // var td2 = create_td("td",lastname);
+    // var td3 = create_td("td",add1);
+    // var td4 = create_td("td",add2);
+    // var td5 = create_td("td",pin);
+    // //var td6 = create_td("td",gender);
+    // //var td7 = create_td("td",choice);
+    // var td8 = create_td("td",state);
+    // var td9 = create_td("td",country);
+    // tbody_tr.append(td1,td2,td3,td4,td5,td8,td9);
+    // tbody.append(tbody_tr); 
+}
 /*
 var tbody_tr = create_tr();
             var td1 = create_th("th","scope","row",x);
