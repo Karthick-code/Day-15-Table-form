@@ -11,26 +11,34 @@ function create_input(tagname,attriname1,attrival1,attiname2,attrival2){
     input1.setAttribute(attriname1,attrival1);
     input1.setAttribute(attiname2,attrival2);
     input1.setAttribute("placeholder",attrival2);
-    //input1.setAttribute("style","display:block");
+    return input1;
+}
+function create_input_type(tagname,attriname1,attrival1,attiname2,attrival2){
+    var input1=document.createElement(tagname); 
+    input1.className=attrival1;   
+    input1.setAttribute(attriname1,attrival1);
+    input1.setAttribute(attiname2,attrival2);
+    input1.setAttribute("value",attrival2);
     return input1;
 }
 
 function create_checkbox(){
-    var north_input=create_input("input","type","checkbox","id","NorthIndian");
-    var northlabel=create_label("label","for","NorthIndian","North Indian");northlabel.setAttribute("style","display:inline");
-    var south_input=create_input("input","type","checkbox","id","SouthIndian");
+    var north_input=create_input_type("input","type","checkbox","id","NorthIndian");
+    var northlabel=create_label("label","for","NorthIndian","North Indian");northlabel.setAttribute("style","display:inline-block");
+    var south_input=create_input_type("input","type","checkbox","id","SouthIndian");
     var southlabel=create_label("label","for","SouthIndian","South Indian");southlabel.setAttribute("style","display:inline");
-    var chinese_input=create_input("input","type","checkbox","id","Chinese");
+    var chinese_input=create_input_type("input","type","checkbox","id","Chinese");
     var chineselabel=create_label("label","for","Chinese","Chinese");chineselabel.setAttribute("style","display:inline");
-    var japanese_input=create_input("input","type","checkbox","id","japanese");
+    var japanese_input=create_input_type("input","type","checkbox","id","japanese");
     var japaneselabel=create_label("label","for","japanese","Japanese");japaneselabel.setAttribute("style","display:inline");
-    var seafood_input=create_input("input","type","checkbox","id","Seafood");//seafood_input.setAttribute("style","display:inline-block");
+    var seafood_input=create_input_type("input","type","checkbox","id","Seafood");//seafood_input.setAttribute("style","display:inline-block");
     var seafoodlabel=create_label("label","for","Seafood","Seafood");seafoodlabel.setAttribute("style","display:inline");
     form1.append(north_input,northlabel,south_input,southlabel,chinese_input,chineselabel,
         japanese_input,japaneselabel,seafood_input,seafoodlabel);
 }
 var cont=document.createElement("div");
 cont.className="container";
+// cont.setAttribute("style","size:auto")
 
 var r_ow=document.createElement("div");
 r_ow.className="row";
@@ -38,6 +46,7 @@ r_ow.className="row";
 //left side for form
 var col_1=document.createElement("div");
 col_1.className="col-4";
+
 
 var form1=document.createElement("form");
 var head=document.createElement("h3");
@@ -59,12 +68,14 @@ var pinlabel=create_label("label","for","PIN","PIN:");
 var pininput=create_input("input","type","text","id","PIN");
 
 var genderlabel=create_label("label","for","Gender","Gender:");
-var genderinput1=create_input("input","type","radio","id","male");
+var genderinput1=create_input_type("input","type","radio","id","male");
 genderinput1.name="gender";
+// genderinput1.value="Male";
 var malelabel=create_label("label","for","male","Male");
 malelabel.setAttribute("style","display:inline");
-var genderinput2=create_input("input","type","radio","id","female");
+var genderinput2=create_input_type("input","type","radio","id","female");
 genderinput2.name="gender";
+//genderinput2.value="Female";
 var femalelabel=create_label("label","for","male","Female");
 femalelabel.setAttribute("style","display:inline");
 
@@ -87,7 +98,8 @@ but.setAttribute("type","button");
 but.id="but1";
 but.innerHTML="Submit";
 but.setAttribute("style","display:block");
-but.addEventListener("click",data_2_table());// function to be added
+but.addEventListener("click",(element)=>{
+    element.onclick=data_2_table()});// function to be added
 
 form1.append(but);
 
@@ -96,7 +108,8 @@ col_1.append(form1);
 
 //right side for table
 var col_2=document.createElement("div");
-col_2.className="col-8";// column 2 for table
+col_2.className="col-8";
+col_2.setAttribute("style","padding-left:200px;"); // column 2 for table
 
 var head2=document.createElement("h3");
 head2.innerHTML="Temporary Database:";
@@ -132,16 +145,9 @@ parent_div.append(head2,table);
 col_2.append(parent_div);
 
 
-
-
-
-
 r_ow.append(col_1,col_2);
 cont.append(r_ow);
 document.body.append(cont);
-
-
-
 
 
 
@@ -165,34 +171,44 @@ function create_td(tagname,content){
     return td_ele; 
 }
 function data_2_table(){
-    //var tbody_tr=create_tr();
-    var firstname=document.getElementById("FirstName");
-    console.log(firstname);
-    // var lastname=document.getElementById("LastName");
-    // var add1=document.getElementById("AddresLine1");
-    // var add2=document.getElementById("AddresLine2");
-    // var pin=document.getElementById("PIN");
-    // //var gender=document.getElementById("Gender").value;
-    // //var choice=document.getElementById("Choice of Food").value;
-    // var state=document.getElementById("State");
-    // var country=document.getElementById("Country");
+    var tbody_tr=create_tr();
+    var firstname=document.getElementById("FirstName").value;
     
-    // var td1 = create_th("th","scope","row",firstname);
-    // var td2 = create_td("td",lastname);
-    // var td3 = create_td("td",add1);
-    // var td4 = create_td("td",add2);
-    // var td5 = create_td("td",pin);
-    // //var td6 = create_td("td",gender);
-    // //var td7 = create_td("td",choice);
-    // var td8 = create_td("td",state);
-    // var td9 = create_td("td",country);
-    // tbody_tr.append(td1,td2,td3,td4,td5,td8,td9);
-    // tbody.append(tbody_tr); 
+    var lastname=document.getElementById("LastName").value;
+    var add1=document.getElementById("AddresLine1").value;
+    var add2=document.getElementById("AddresLine2").value;
+    var pin=document.getElementById("PIN").value;
+    var form=document.querySelector("form");
+    const data = new FormData(form);//gender value retiving
+    let gen_val = "";
+    for (const entry of data) {
+        gen_val = `${gen_val}${entry[1]}`;
+    }
+    var gender=gen_val;
+    //console.log(gender)
+
+    var choice_val="";
+    var choice=document.querySelectorAll(".checkbox:checked");
+    for(var ch of choice){
+        if(choice_val.length!=0){
+            choice_val+=","
+        }
+        choice_val=`${choice_val}${ch.value}`;
+    }
+    //console.log(choice_val);
+
+    var state=document.getElementById("State").value;
+    var country=document.getElementById("Country").value;
+    
+    var td1 = create_td("td",firstname);
+    var td2 = create_td("td",lastname);
+    var td3 = create_td("td",add1);
+    var td4 = create_td("td",add2);
+    var td5 = create_td("td",pin);
+    var td6 = create_td("td",gender);
+    var td7 = create_td("td",choice_val);
+    var td8 = create_td("td",state);
+    var td9 = create_td("td",country);
+    tbody_tr.append(td1,td2,td3,td4,td5,td6,td7,td8,td9);
+    tbody.append(tbody_tr); 
 }
-/*
-var tbody_tr = create_tr();
-            var td1 = create_th("th","scope","row",x);
-            var td2 = create_td("td",y);
-            var td3 = create_td("td",z);
-            tbody_tr.append(td1,td2,td3);
-            tbody.append(tbody_tr);*/
