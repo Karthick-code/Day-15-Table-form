@@ -109,7 +109,7 @@ col_1.append(form1);
 //right side for table
 var col_2=document.createElement("div");
 col_2.className="col-8";
-col_2.setAttribute("style","padding-left:200px;"); // column 2 for table
+col_2.setAttribute("style","padding-left:50px;"); // column 2 for table
 
 var head2=document.createElement("h3");
 head2.innerHTML="Temporary Database:";
